@@ -37,16 +37,40 @@ function Header() {
   </div></nav></header>;
 }
 function Footer() { return <footer className="footer"><div className="container footer-inner"><p>© {new Date().getFullYear()} Andrei Vincent P. Padillo</p><span className="mono-label">Made while learning / Tangub City</span></div></footer>; }
+
 function getMain(source) {
   const match = source.match(/<main>([\s\S]*?)<\/main>/i);
-  return (match ? match[1] : '<section class="section-pad"><div class="container">Page content unavailable.</div></section>')
-    
-.replaceAll(
-  'https://raw.githubusercontent.com/FateMorningStar/fatemorningstar.github.io/refs/heads/main/',
-  import.meta.env.BASE_URL
-)
-.replaceAll('index.html', '/').replaceAll('about.html', '/about').replaceAll('work.html', '/work').replaceAll('contact.html', '/contact').replaceAll('budget-tracker.html', '/budget-tracker');
+  return (
+    match
+      ? match[1]
+      : '<section class="section-pad"><div class="container">Page content unavailable.</div></section>'
+  )
+    .replaceAll(
+      'https://raw.githubusercontent.com/FateMorningStar/fatemorningstar.github.io/refs/heads/main/',
+      import.meta.env.BASE_URL
+    )
+    .replace(
+      /href=(["'])index\.html\1/gi,
+      'href="#/"'
+    )
+    .replace(
+      /href=(["'])about\.html\1/gi,
+      'href="#/about"'
+    )
+    .replace(
+      /href=(["'])work\.html\1/gi,
+      'href="#/work"'
+    )
+    .replace(
+      /href=(["'])contact\.html\1/gi,
+      'href="#/contact"'
+    )
+    .replace(
+      /href=(["'])budget-tracker\.html\1/gi,
+      'href="#/budget-tracker"'
+    );
 }
+
 function StaticPage({ source }) {
   const html = getMain(source);
   useEffect(() => {
