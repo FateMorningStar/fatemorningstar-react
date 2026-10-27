@@ -612,3 +612,151 @@ h1 em, h2 em, .contact-title em {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
 }
+/* From the Budget Tracker */
+.budget-section {
+  padding: clamp(64px, 9vw, 110px) 0;
+}
+
+.budget-heading {
+  max-width: 900px;
+  margin-bottom: 42px;
+}
+
+.budget-heading h1 {
+  max-width: 850px;
+}
+
+.budget-heading p {
+  max-width: 760px;
+  color: var(--ink-soft);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.budget-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 720px;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.budget-label {
+  display: block;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.budget-input,
+.expense-row input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 0.95rem var(--sans);
+}
+
+.budget-input:focus,
+.expense-row input:focus {
+  outline: 2px solid var(--sage);
+  outline-offset: 2px;
+}
+
+.expense-list {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.expense-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.save-expense,
+.add-expense {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--white);
+  font: 600 0.85rem var(--sans);
+  cursor: pointer;
+}
+
+.save-expense:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.add-expense {
+  justify-self: start;
+  margin-top: 2px;
+}
+
+.add-expense:hover,
+.save-expense:not(:disabled):hover {
+  background: #294476;
+}
+
+.budget-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.remaining-label {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.remaining-amount {
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .budget-section {
+    padding: 56px 0 72px;
+  }
+
+  .budget-heading {
+    margin-bottom: 30px;
+  }
+
+  .budget-box {
+    gap: 12px;
+    padding: 18px;
+  }
+
+  .expense-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .save-expense {
+    justify-self: start;
+  }
+
+  .budget-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
