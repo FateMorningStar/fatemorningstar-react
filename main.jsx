@@ -75,15 +75,21 @@ function BudgetTracker() {
   const save = id => setExpenses(prev => prev.map(e => e.id === id && Number(e.value) > 0 ? {...e, amount: Number(e.value), saved: true} : e));
   return <main><section className="budget-section"><div className="container"><div className="budget-heading"><div className="eyebrow">04 / Budget Tracker</div><h1>Track your <em>budget.</em></h1><p>Enter your total amount, add your expenses, and keep track of the amount you have remaining.</p></div><div className="budget-box"><label className="budget-label" htmlFor="salary">Total Amount / Salary</label><input className="budget-input" id="salary" type="number" min="0" placeholder="Enter total amount" value={salary} onChange={e=>setSalary(e.target.value)}/><label className="budget-label">Expenses</label><div className="expense-list">{expenses.map(e=><div className="expense-row" key={e.id}><input type="number" min="0" placeholder="Enter expense amount" value={e.value} disabled={e.saved} onChange={event=>update(e.id,event.target.value)}/><button className="save-expense" type="button" disabled={e.saved} onClick={()=>save(e.id)}>{e.saved ? 'Saved' : 'Save'}</button></div>)}</div><button className="add-expense" type="button" onClick={add}>+ Add Expense</button><div className="budget-footer"><span className="remaining-label">Remaining Amount</span><span className="remaining-amount">₱{money(remaining)}</span></div></div></div></section></main>;
 }
-  function App() {
-  return <HashRouter><Header/><Routes>
-    <Route path="/" element={<StaticPage source={homeSource}/>}/>
-    <Route path="/about" element={<StaticPage source={aboutSource}/>}/>
-    <Route path="/work" element={<StaticPage source={workSource}/>}/>
-    <Route path="/contact" element={<StaticPage source={contactSource}/>}/>
-    <Route path="/budget-tracker" element={<BudgetTracker/>}/>
-    <Route path="*" element={<StaticPage source={homeSource}/>}/>
-  </Routes><Footer/></BrowserRouter>;
+  
+function App() {
+  return (
+    <HashRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<StaticPage source={homeSource} />} />
+        <Route path="/about" element={<StaticPage source={aboutSource} />} />
+        <Route path="/work" element={<StaticPage source={workSource} />} />
+        <Route path="/contact" element={<StaticPage source={contactSource} />} />
+        <Route path="/budget-tracker" element={<BudgetTracker />} />
+        <Route path="*" element={<StaticPage source={homeSource} />} />
+      </Routes>
+      <Footer />
+    </HashRouter>
+  );
 }
-
 createRoot(document.getElementById('root')).render(<React.StrictMode><App/></React.StrictMode>);
