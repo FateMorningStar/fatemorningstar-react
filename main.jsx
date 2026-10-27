@@ -40,11 +40,12 @@ function Footer() { return <footer className="footer"><div className="container 
 function getMain(source) {
   const match = source.match(/<main>([\s\S]*?)<\/main>/i);
   return (match ? match[1] : '<section class="section-pad"><div class="container">Page content unavailable.</div></section>')
-    .replaceAll(
+    
+.replaceAll(
   'https://raw.githubusercontent.com/FateMorningStar/fatemorningstar.github.io/refs/heads/main/',
-  `${import.meta.env.BASE_URL}images/`
+  import.meta.env.BASE_URL
 )
-    .replaceAll('index.html', '/').replaceAll('about.html', '/about').replaceAll('work.html', '/work').replaceAll('contact.html', '/contact').replaceAll('budget-tracker.html', '/budget-tracker');
+.replaceAll('index.html', '/').replaceAll('about.html', '/about').replaceAll('work.html', '/work').replaceAll('contact.html', '/contact').replaceAll('budget-tracker.html', '/budget-tracker');
 }
 function StaticPage({ source }) {
   const html = getMain(source);
