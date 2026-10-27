@@ -653,8 +653,6 @@ h1 em, h2 em, .contact-title em {
   background: var(--white);
 }
 
-/* Labels */
-
 .budget-label {
   display: block;
   margin: 8px 0 0;
@@ -663,8 +661,6 @@ h1 em, h2 em, .contact-title em {
   font-weight: 700;
   line-height: 1.5;
 }
-
-/* Input fields */
 
 .budget-input,
 .expense-row input {
@@ -818,3 +814,86 @@ h1 em, h2 em, .contact-title em {
     font-size: 1.6rem;
   }
 }
+
+.lightbox:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+  background: rgba(15, 20, 30, 0.92);
+  overflow-y: auto;
+}
+
+.lightbox figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 1100px;
+  margin: 0;
+}
+
+.lightbox figure img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox figcaption {
+  margin-top: 12px;
+  color: #fff;
+  text-align: center;
+}
+
+.lightbox .lightbox-close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 10001;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  background: #fff;
+  color: #222;
+
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox .lightbox-close:hover {
+  background: #eaf2f8;
+}
+
+@media (max-width: 560px) {
+  .lightbox:not([hidden]) {
+    padding: 16px;
+  }
+
+  .lightbox figure img {
+    max-height: 75vh;
+  }
+
+  .lightbox .lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
+  }
