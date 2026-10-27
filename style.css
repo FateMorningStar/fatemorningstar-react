@@ -897,3 +897,13 @@ h1 em, h2 em, .contact-title em {
     right: 12px;
   }
   }
+@media (min-width: 561px) {
+  .lightbox .lightbox-close {
+    width: 60px;
+    height: 60px;
+    top: 24px;
+    right: 24px;
+    font-size: 42px;
+    font-weight: 400;
+  }
+}
