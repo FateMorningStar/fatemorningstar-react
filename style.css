@@ -612,9 +612,9 @@ h1 em, h2 em, .contact-title em {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
 }
-/* From the Budget Tracker */
+
 .budget-section {
-  padding: clamp(64px, 9vw, 110px) 0;
+  padding: clamp(56px, 9vw, 110px) 0;
 }
 
 .budget-heading {
@@ -624,45 +624,64 @@ h1 em, h2 em, .contact-title em {
 
 .budget-heading h1 {
   max-width: 850px;
+  margin: 27px 0 24px;
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  line-height: 0.95;
+  overflow-wrap: break-word;
 }
 
 .budget-heading p {
-  max-width: 760px;
+  max-width: 650px;
+  margin: 0;
   color: var(--ink-soft);
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
 }
 
 .budget-box {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+
   width: 100%;
-  max-width: 720px;
+  max-width: 650px;
   padding: clamp(20px, 4vw, 32px);
+
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
 }
 
+/* Labels */
+
 .budget-label {
   display: block;
-  margin: 0;
+  margin: 8px 0 0;
+  color: var(--ink);
   font-size: 0.9rem;
   font-weight: 700;
+  line-height: 1.5;
 }
+
+/* Input fields */
 
 .budget-input,
 .expense-row input {
   display: block;
+  box-sizing: border-box;
+
   width: 100%;
   min-width: 0;
   min-height: 48px;
   padding: 12px 14px;
+
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--paper);
   color: var(--ink);
-  font: 0.95rem var(--sans);
+
+  font: 400 1rem var(--sans);
 }
 
 .budget-input:focus,
@@ -671,75 +690,103 @@ h1 em, h2 em, .contact-title em {
   outline-offset: 2px;
 }
 
+.budget-input:disabled,
+.expense-row input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 .expense-list {
-  display: grid;
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   width: 100%;
 }
 
 .expense-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 10px;
   align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
 .save-expense,
 .add-expense {
-  min-height: 44px;
-  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 11px 18px;
+
   border: 1px solid var(--ink);
   border-radius: 4px;
   background: var(--ink);
   color: var(--white);
-  font: 600 0.85rem var(--sans);
+
+  font: 600 0.9rem var(--sans);
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.save-expense:hover:not(:disabled),
+.add-expense:hover {
+  background: #294476;
 }
 
 .save-expense:disabled {
   opacity: 0.6;
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .add-expense {
-  justify-self: start;
-  margin-top: 2px;
-}
-
-.add-expense:hover,
-.save-expense:not(:disabled):hover {
-  background: #294476;
+  align-self: flex-start;
+  margin-top: 4px;
 }
 
 .budget-footer {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 8px 16px;
-  margin-top: 10px;
-  padding-top: 18px;
+  gap: 10px 16px;
+
+  margin-top: 12px;
+  padding-top: 22px;
+
   border-top: 1px solid var(--line);
 }
 
 .remaining-label {
   color: var(--ink-soft);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .remaining-amount {
-  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  color: var(--ink);
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
   font-weight: 700;
   overflow-wrap: anywhere;
 }
 
 @media (max-width: 560px) {
   .budget-section {
-    padding: 56px 0 72px;
+    padding: 48px 0 64px;
   }
 
   .budget-heading {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
+  }
+
+  .budget-heading h1 {
+    margin: 22px 0 18px;
+    font-size: clamp(2.8rem, 13vw, 4.2rem);
+    line-height: 1;
+  }
+
+  .budget-heading p {
+    font-size: 1rem;
   }
 
   .budget-box {
@@ -753,10 +800,21 @@ h1 em, h2 em, .contact-title em {
 
   .save-expense {
     justify-self: start;
+    min-width: 90px;
+  }
+
+  .add-expense {
+    align-self: stretch;
+    width: 100%;
   }
 
   .budget-footer {
     align-items: flex-start;
     flex-direction: column;
+    gap: 8px;
+  }
+
+  .remaining-amount {
+    font-size: 1.6rem;
   }
 }
