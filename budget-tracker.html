@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Budget Tracker — Andrei Vincent P. Padillo</title>
+    <meta name="description" content="just a simple budget tracker by Andrei Vincent P. Padillo.">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      .budget-section {
+        min-height: calc(100vh - 160px);
+        padding: clamp(70px, 10vw, 120px) 0;
+      }
+
+      .budget-heading {
+        margin-bottom: 45px;
+      }
+
+      .budget-heading h1 {
+        margin-bottom: 20px;
+      }
+
+      .budget-heading p {
+        max-width: 500px;
+        color: var(--ink-soft);
+      }
+
+      .budget-box {
+        max-width: 650px;
+        padding: 35px;
+        border: 1px solid var(--line);
+        background: var(--white);
+      }
+
+      .budget-label {
+        display: block;
+        margin-bottom: 8px;
+        font: 500 0.7rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #527669;
+      }
+
+      .budget-input {
+        width: 100%;
+        padding: 14px;
+        margin-bottom: 25px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--ink);
+        font: 1rem var(--sans);
+        outline: none;
+      }
+
+      .budget-input:focus {
+        border-color: var(--coral);
+      }
+
+      .expense-list {
+        display: grid;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .expense-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+      }
+
+      .expense-row input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--ink);
+        outline: none;
+      }
+
+      .expense-row input:focus {
+        border-color: var(--coral);
+      }
+
+      .save-expense {
+        padding: 12px 18px;
+        border: 0;
+        background: var(--ink);
+        color: var(--white);
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .save-expense:hover {
+        background: #294476;
+      }
+
+      .add-expense {
+        padding: 12px 18px;
+        border: 1px solid var(--ink);
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .add-expense:hover {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .budget-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        margin-top: 35px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .remaining-label {
+        font: 500 0.7rem var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      .remaining-amount {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      @media (max-width: 560px) {
+        .budget-box {
+          padding: 22px;
+        }
+
+        .expense-row {
+          grid-template-columns: 1fr;
+        }
+
+        .save-expense {
+          width: 100%;
+        }
+
+        .budget-footer {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark">AV</span>
+          <span>Andrei Vincent P. Padillo</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Primary navigation">
+          <div class="dropdown">
+            <button
+              class="nav-link dropdown-toggle"
+              id="dropdownBtn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="dropdownMenu">
+              Explore
+              <span class="dropdown-arrow" id="dropdownArrow" aria-hidden="true">⌄</span>
+            </button>
+
+            <ul class="dropdown-menu" id="dropdownMenu">
+              <li><a href="index.html">Home <span>↗</span></a></li>
+              <li><a href="about.html">About <span>↗</span></a></li>
+              <li><a href="work.html">Work <span>↗</span></a></li>             
+              <li><a href="contact.html">Contacts <span>↗</span></a></li>
+              <li><a href="budget-tracker.html">Budget Tracker <span>↗</span></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <button
+          class="mobile-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-label="Open navigation menu">
+          ☰
+        </button>
+      </div>
+      
+      <nav class="mobile-menu" data-mobile-menu aria-label="Mobile navigation">
+        <div class="mobile-dropdown">
+          <button
+            class="mobile-dropdown-toggle"
+            id="mobileDropdownBtn"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobileDropdownMenu">
+            Explore
+            <span class="mobile-dropdown-arrow" id="mobileDropdownArrow">⌄</span>
+          </button>
+
+          <ul class="mobile-dropdown-menu" id="mobileDropdownMenu">
+            <li><a href="index.html">Home <span>↗</span></a></li>
+            <li><a href="about.html">About <span>↗</span></a></li>
+            <li><a href="work.html">Work <span>↗</span></a></li>            
+            <li><a href="contact.html">Contacts <span>↗</span></a></li>
+            <li><a href="budget-tracker.html">Budget Tracker <span>↗</span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="budget-section">
+        <div class="container">
+          <div class="budget-heading">
+            <div class="eyebrow">04 / Budget Tracker</div>
+            <h1>
+              Track your <em>budget.</em>
+            </h1>
+            <p>
+              Enter your total amount, add your expenses, and keep track
+              of the amount you have remaining.
+            </p>
+          </div>
+
+
+          <div class="budget-box">
+            <label class="budget-label" for="salary">
+              Total Amount / Salary
+            </label>
+            <input
+              class="budget-input"
+              type="number"
+              id="salary"
+              placeholder="Enter total amount"
+              min="0">
+
+            <label class="budget-label">
+              Expenses
+            </label>
+            <div id="expenseList" class="expense-list"></div>
+            <button id="addExpense" class="add-expense" type="button">
+              + Add Expense
+            </button>
+
+            <div class="budget-footer">
+              <span class="remaining-label">
+                Remaining Amount
+              </span>
+              <span class="remaining-amount">
+                ₱<span id="total">0.00</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>
+          © <span data-year></span> Andrei Vincent P. Padillo
+        </p>
+        <span class="mono-label">
+          Made while learning / Tangub City
+        </span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+      const salaryInput = document.getElementById("salary");
+      const expenseList = document.getElementById("expenseList");
+      const addExpenseButton = document.getElementById("addExpense");
+      const totalDisplay = document.getElementById("total");
+
+      let totalExpenses = 0;
+
+
+      function updateTotal() {
+
+        const salary = Number(salaryInput.value) || 0;
+
+        const remaining = salary - totalExpenses;
+
+        totalDisplay.textContent = remaining.toFixed(2);
+      }
+
+      addExpenseButton.addEventListener("click", function () {
+
+        // Create the expense row
+        const expenseRow = document.createElement("div");
+
+        expenseRow.className = "expense-row";
+
+        // Create the expense input
+        const expenseInput = document.createElement("input");
+
+        expenseInput.type = "number";
+        expenseInput.placeholder = "Enter expense amount";
+        expenseInput.min = "0";
+
+        // Create the save button
+        const saveButton = document.createElement("button");
+
+        saveButton.type = "button";
+        saveButton.className = "save-expense";
+        saveButton.textContent = "Save";
+
+        // Add the input and button to the row
+        expenseRow.appendChild(expenseInput);
+        expenseRow.appendChild(saveButton);
+
+        // Add the row to the expense list
+        expenseList.appendChild(expenseRow);
+          
+        // Save the expense
+        saveButton.addEventListener("click", function () {
+
+          const expense = Number(expenseInput.value);
+
+          if (expense > 0) {
+
+            totalExpenses += expense;
+
+            updateTotal();
+
+            expenseInput.disabled = true;
+            saveButton.disabled = true;
+
+          }
+        });
+      });
+      // Update total when salary changes
+      salaryInput.addEventListener("input", updateTotal);
+    </script>
+  </body>
+</html>
